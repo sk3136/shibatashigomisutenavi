@@ -1,0 +1,22 @@
+@charset "utf-8";
+body {
+	background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+table {
+    font-size: 14px;
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+td {
+    text-align: left;
+}
+table tr:nth-child(odd){
+    background-color: #e2e0e0;
+}
+th {
+    color: #ffffff;
+    background-color: #39a73b;
+    font-size: 20px;
+    padding: 7px;
+}
