@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>新聞、段ボール、雑誌チラシゴミ一覧</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<table id="targetTable">
+    <th>新聞、段ボール、雑誌チラシゴミ一覧</th>
+</table>
+<a href="hontyou.html"><button>戻る</button></a>
+<script>
+    var sinbunitiran = ['紙袋（素材：紙）','新聞','雑誌','卵パック（素材：紙）','段ボール','チラシ','ラップの箱（素材：紙）']
+    window.onload = function() {
+        for (var i = 0; i < sinbunitiran.length; i++) {
+            let table = document.getElementById('targetTable');
+            let newRow = table.insertRow();
+            let newCell = newRow.insertCell();
+            let newText = document.createTextNode(sinbunitiran[i]);
+            newCell.appendChild(newText);
+        }
+    }
+</script>
+</body>
+</html>
