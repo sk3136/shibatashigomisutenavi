@@ -16,10 +16,12 @@ function moeru() {
         document.getElementById('moeru').textContent = '5/6(土)';
     } else if (month == 9 && date == 21 || month == 9 && date == 22){
         document.getElementById('moeru').textContent = '9/26(火)';
-    } else if (month == 11 && date == 21 || month == 9 && date == 22){
+    } else if (month == 11 && date == 21 || month == 11 && date == 22){
         document.getElementById('moeru').textContent = '11/25(土)';
     } else if (month == 12 && date == 30 || month == 12 && date == 31 || month == 1 && date == 1){
         document.getElementById('moeru').textContent = '1/4(木)';
+    } else if (month == 3 && date == 30 || month == 3 && date == 31){
+        document.getElementById('moeru').textContent = '次の収集日は市役所のホームページで確認してください。';
     } else if (dayOfWeek == 1 || dayOfWeek == 3 || dayOfWeek == 5) {
         now.setDate(date + 1);
         month = now.getMonth() + 1;
@@ -59,8 +61,8 @@ function answer(calendar) {
     }
     var date = now.getDate();
     for (var i = 0; i < calendar.length; i++) {
-        if (calendar[i].slice(0,2) > 12) {
-            var month2 = calendar[i].slice(0,2) - 12;
+        if (month > 12) {
+            var month2 = month - 12;
         } else {
             var month2 = month
         }
@@ -77,16 +79,15 @@ function answer(calendar) {
                 }
             }
         } else if (month < calendar[i].slice(0,2)) {
+            if (month == 12) {
+                month2 = 0;
+                year = year + 1;
+            }
             var answerDate = new Date(year, month2, calendar[i].slice(2,4));
             var dayOfWeek = answerDate.getDay();
             var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
-            if (calendar[i].slice(0.2) > 12) {
-                answerDates.push(Number(calendar[i].slice(0,2)) + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
-                break;
-            } else {
-                answerDates.push(Number(calendar[i].slice(0,2)) + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
-                break;
-            }
+            answerDates.push(month2 + 1 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+            break;
         }
     }
 }
@@ -145,7 +146,7 @@ table tr:nth-child(odd){
 </head>
 <body style="text-align: center">
 <h1>新発田市小舟町<br>ゴミ捨てナビ</h1>
-<p>2023年1月～2023年3月</p>
+<p>2023年4月～2024年3月</p>
 <p>ゴミの種類をタップすると<br>その種類の一覧表が出ます</p>
 <table>
     <tr>
