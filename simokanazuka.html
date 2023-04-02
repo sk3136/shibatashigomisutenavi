@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>新発田市東新町2・3丁目町内会ゴミ捨てナビ</title>
+<title>新発田市下金塚ゴミ捨てナビ</title>
 <script>
 function moeru() {
     var now = new Date();
@@ -14,11 +14,11 @@ function moeru() {
         document.getElementById('moeru').textContent = '5/6(土)';
     } else if (month == 10 && date == 31 || month == 11 && date == 1 || month == 11 && date == 2) {
         document.getElementById('moeru').textContent = '11/4(土)';
-    } else if (month == 12 && date == 29 || month == 12 && date == 30 || month == 12 && date == 31 || month == 1 && date == 1){
+    } else if (month == 12 && date == 29 || month == 12 && date == 30 || month == 12 && date == 31 || month == 1 && date == 1) {
         document.getElementById('moeru').textContent = '1/5(金)';
-    } else if (month == 2 && date == 20 || month == 2 && date == 21 || month == 2 && date == 22){
+    } else if (month == 2 && date == 20 || month == 2 && date == 21 || month == 2 && date == 22) {
         document.getElementById('moeru').textContent = '2/24(土)';
-    } else if (month == 3 && date == 29 || month == 3 && date == 30 || month == 3 && date == 31){
+    } else if (month == 3 && date == 29 || month == 3 && date == 30 || month == 3 && date == 31) {
         document.getElementById('moeru').textContent = '次の収集日は市役所のホームページで確認してください。';
     } else if (dayOfWeek == 1 || dayOfWeek == 4) {
         now.setDate(date + 1);
@@ -45,17 +45,16 @@ function moeru() {
         now.setDate(date + 4);
         month = now.getMonth() + 1;
         date = now.getDate();
-        dayOfWeek = now.getDay();
         document.getElementById('moeru').textContent = month + '/' + date + '(火)';
     }
 }
 
-var moenaiCalendar = ['0413','0518','0615','0713','0817','0914','1019','1116','1221','1318','1415','1514'];
-var akikanCalendar = ['0406','0420','0511','0525','0608','0622','0706','0720','0810','0824','0907','0921','1012','1026','1109','1130','1214','1228','1311','1325','1408','1422','1507','1521'];
-var happouCalendar = ['0406','0511','0608','0706','0810','0907','1012','1109','1214','1311','1408','1507'];
-var furununoCalendar = ['0420','0525','0622','0720','0824','0921','1026','1130','1228','1325','1422','1521'];
-var sinbunCalendar = ['0412','0427','0517','0529','0614','0629','0712','0727','0821','0830','0913','0928','1016','1026','1115','1129','1213','1227','1317','1329','1414','1428','1513','1528'];
-var akibinCalendar = ['0428','0530','0630','0728','0831','0929','1027','1130','1228','1330','1429','1529'];
+var moenaiCalendar = ['0405','0510','0607','0710','0809','0906','1004','1108','1206','1310','1407','1506'];
+var akikanCalendar = ['0403','0419','0508','0524','0605','0621','0705','0724','0807','0823','0904','0920','1002','1023','1106','1122','1204','1220','1315','1329','1405','1426','1504','1525'];
+var happouCalendar = ['0412','0517','0614','0717','0816','0913','1016','1115','1213','1322','1419','1513'];
+var furununoCalendar = ['0417','0522','0619','0719','0821','0918','1018','1120','1218','1324','1421','1518'];
+var sinbunCalendar = ['0410','0424','0515','0529','0612','0626','0712','0726','0814','0828','0911','0925','1011','1025','1113','1127','1211','1225','1317','1331','1414','1428','1511','1527'];
+var akibinCalendar = ['0426','0531','0628','0731','0830','0927','1030','1129','1227','1326','1427','1529'];
 var answerDates = [];
 
 function answer(calendar) {
@@ -152,7 +151,7 @@ table tr:nth-child(odd){
 </style>
 </head>
 <body style="text-align: center">
-<h1>新発田市<br>東新町2・3丁目町内会<br>ゴミ捨てナビ</h1>
+<h1>新発田市下金塚<br>ゴミ捨てナビ</h1>
 <p>2023年4月～2024年3月</p>
 <p>ゴミの種類をタップすると<br>その種類の一覧表が出ます</p>
 <table>
@@ -161,31 +160,31 @@ table tr:nth-child(odd){
         <th>次の収集日</th>
     </tr>
     <tr>
-        <td><a href="moeru tousin2 3.html">燃えるゴミ</a></td>
+        <td><a href="moeru simokanazuka.html">燃えるゴミ</a></td>
         <td id="moeru"></td>
     </tr>
     <tr>
-        <td><a href="moenai tousin2 3.html">燃えないゴミ</a></td>
+        <td><a href="moenai simokanazuka.html">燃えないゴミ</a></td>
         <td id="moenai"></td>
     </tr>
     <tr>
-        <td><a href="akikan tousin2 3.html">空き缶類</a></td>
+        <td><a href="akikan simokanazuka.html">空き缶類</a></td>
         <td id="akikan"></td>
     </tr>
     <tr>
-        <td><a href="happou tousin2 3.html">発泡スチロール</a></td>
+        <td><a href="happou simokanazuka.html">発泡スチロール</a></td>
         <td id="happou"></td>
     </tr>
     <tr>
-        <td><a href="furununo tousin2 3.html">古布</a></td>
+        <td><a href="furununo simokanazuka.html">古布</a></td>
         <td id="furununo"></td>
     </tr>
     <tr>
-        <td style="font-size: 15px;"><a href="sinbun tousin2 3.html">新聞、段ボール、雑誌、チラシ</a></td>
+        <td style="font-size: 15px;"><a href="sinbun simokanazuka.html">新聞、段ボール、雑誌、チラシ</a></td>
         <td id="sinbun"></td>
     </tr>
     <tr>
-        <td><a href="akibin tousin2 3.html">空き瓶</a></td>
+        <td><a href="akibin simokanazuka.html">空き瓶</a></td>
         <td id="akibin"></td>
     </tr>
 </table>
