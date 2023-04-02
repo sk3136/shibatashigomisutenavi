@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>雑誌類ゴミ一覧</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<table id="targetTable">
+    <th>雑誌類ゴミ一覧</th>
+</table>
+<a href="oosima.html"><button>戻る</button></a>
+<script>
+    var happouitiran = ['紙袋（素材：紙）','雑誌','チラシ','ラップの箱（素材：紙）']
+    window.onload = function() {
+        for (var i = 0; i < happouitiran.length; i++) {
+            let table = document.getElementById('targetTable');
+            let newRow = table.insertRow();
+            let newCell = newRow.insertCell();
+            let newText = document.createTextNode(happouitiran[i]);
+            newCell.appendChild(newText);
+        }
+    }
+</script>
+</body>
+</html>
