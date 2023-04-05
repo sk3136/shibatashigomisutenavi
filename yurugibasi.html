@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>新発田市動木橋ゴミ捨てナビ</title>
+<script>
+function moeru() {
+    var now = new Date();
+    var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var dayOfWeek = now.getDay();
+    if (month == 4 && date == 27 || month == 4 && date == 28) {
+        document.getElementById('moeru').textContent = '5/2(火)';
+    } else if (month == 5 && date == 2 || month == 5 && date == 3) {
+        document.getElementById('moeru').textContent = '5/6(土)';
+    } else if (month == 9 && date == 21 || month == 9 && date == 22){
+        document.getElementById('moeru').textContent = '9/26(火)';
+    } else if (month == 11 && date == 21 || month == 11 && date == 22){
+        document.getElementById('moeru').textContent = '11/25(土)';
+    } else if (month == 12 && date == 30 || month == 12 && date == 31 || month == 1 && date == 1){
+        document.getElementById('moeru').textContent = '1/4(木)';
+    } else if (month == 3 && date == 30 || month == 3 && date == 31){
+        document.getElementById('moeru').textContent = '次の収集日は市役所のホームページで確認してください。';
+    } else if (dayOfWeek == 1 || dayOfWeek == 3 || dayOfWeek == 5) {
+        now.setDate(date + 1);
+        month = now.getMonth() + 1;
+        date = now.getDate();
+        dayOfWeek = now.getDay();
+        var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
+        document.getElementById('moeru').textContent = month + '/' + date + '(' + weekKanji[dayOfWeek] + ')';
+    } else if (dayOfWeek == 0 || dayOfWeek == 2 || dayOfWeek == 4) {
+        now.setDate(date + 2);
+        month = now.getMonth() + 1;
+        date = now.getDate();
+        dayOfWeek = now.getDay();
+        var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
+        document.getElementById('moeru').textContent = month + '/' + date + '(' + weekKanji[dayOfWeek] + ')';
+    } else {
+        now.setDate(date + 3);
+        month = now.getMonth() + 1;
+        date = now.getDate();
+        document.getElementById('moeru').textContent = month + '/' + date + '(火)';
+    }
+}
+
+var moenaiCalendar = ['0420','0525','0622','0720','0824','0921','1026','1122','1221','1325','1422','1522'];
+var akikanCalendar = ['0411','0425','0516','0530','0613','0627','0711','0725','0808','0822','0912','0926','1010','1024','1114','1128','1212','1226','1316','1330','1413','1427','1512','1526'];
+var happouCalendar = ['0426','0524','0628','0726','0823','0927','1025','1129','1227','1324','1428','1527'];
+var furununoCalendar = ['0413','0518','0615','0713','0810','0914','1012','1116','1214','1318','1415','1514'];
+var sinbunCalendar = ['0413','0518','0615','0713','0810','0914','1012','1116','1214','1318','1415','1514'];
+var akibinCalendar = ['0412','0517','0614','0712','0809','0913','1011','1115','1213','1317','1414','1513'];
+var answerDates = [];
+
+function answer(calendar) {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    if (month < 4) {
+        month = month + 12;
+    }
+    var date = now.getDate();
+    for (var i = 0; i < calendar.length; i++) {
+        if (month > 12) {
+            var month2 = month - 12;
+        } else {
+            var month2 = month
+        }
+        if (month == calendar[i].slice(0,2)) {
+            if (date < calendar[i].slice(2,4)) {
+                var answerDate = new Date(year, month2 - 1, calendar[i].slice(2,4));
+                var dayOfWeek = answerDate.getDay();
+                var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
+                answerDates.push(month2 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+                break;
+            } else {
+                if (i == calendar.length - 1) {
+                    answerDates.push('次の収集日は市役所のホームページで確認してください。');
+                }
+            }
+        } else if (month < calendar[i].slice(0,2)) {
+            if (month == 12) {
+                month2 = 0;
+                year = year + 1;
+            }
+            var answerDate = new Date(year, month2, calendar[i].slice(2,4));
+            var dayOfWeek = answerDate.getDay();
+            var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
+            answerDates.push(month2 + 1 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+            break;
+        }
+    }
+}
+
+window.onload = function() {
+    moeru();
+    answer(moenaiCalendar);
+    answer(akikanCalendar);
+    answer(happouCalendar);
+    answer(furununoCalendar);
+    answer(sinbunCalendar);
+    answer(akibinCalendar);
+    document.getElementById('moenai').textContent = answerDates[0];
+    document.getElementById('akikan').textContent = answerDates[1];
+    document.getElementById('happou').textContent = answerDates[2];
+    document.getElementById('furununo').textContent = answerDates[3];
+    document.getElementById('sinbun').textContent = answerDates[4];
+    document.getElementById('akibin').textContent = answerDates[5];
+}
+
+</script>
+<style>
+body {
+	background-color: rgb(253, 253, 253);
+}
+table {
+    font-size: 18px;
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+td {
+    text-align: left;
+    border:1px rgb(158, 158, 158) solid;
+    padding: 8px;
+}
+th {
+    text-align: center;
+    border:1px rgb(158, 158, 158) solid;
+    background-color: #39a73b;
+    color: #ffffff;
+    padding: 8px;
+}
+h1 {
+    background-color: #39a73b;
+    color: #ffffff;
+    padding: 8px;
+    padding-top: 14px;
+    font-size: 27.5px;
+}
+p {
+    margin: 3px;
+}
+table tr:nth-child(odd){
+    background-color: #e2e0e0;
+}
+button {
+    font-size: 17.5px;
+}
+</style>
+</head>
+<body style="text-align: center">
+<h1>新発田市動木橋<br>ゴミ捨てナビ</h1>
+<p>2023年4月～2024年3月</p>
+<p>ゴミの種類をタップすると<br>その種類の一覧表が出ます</p>
+<table>
+    <tr>
+        <th>ゴミの種類</th>
+        <th>次の収集日</th>
+    </tr>
+    <tr>
+        <td><a href="moeru yurugibasi.html">燃えるゴミ</a></td>
+        <td id="moeru"></td>
+    </tr>
+    <tr>
+        <td><a href="moenai yurugibasi.html">燃えないゴミ</a></td>
+        <td id="moenai"></td>
+    </tr>
+    <tr>
+        <td><a href="akikan yurugibasi.html">空き缶類</a></td>
+        <td id="akikan"></td>
+    </tr>
+    <tr>
+        <td><a href="happou yurugibasi.html">発泡スチロール</a></td>
+        <td id="happou"></td>
+    </tr>
+    <tr>
+        <td><a href="furununo yurugibasi.html">古布</a></td>
+        <td id="furununo"></td>
+    </tr>
+    <tr>
+        <td style="font-size: 15px;"><a href="sinbun yurugibasi.html">新聞、段ボール、雑誌、チラシ</a></td>
+        <td id="sinbun"></td>
+    </tr>
+    <tr>
+        <td><a href="akibin yurugibasi.html">空き瓶</a></td>
+        <td id="akibin"></td>
+    </tr>
+</table>
+<p>詳しい分別方法は<a href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/dashikata/1001150.html">市のホームページ</a>で<br>確認してください。</p>
+<a href="index.html"><button>新発田市ゴミ捨てナビに戻る</button></a>
+</body>
+</html>
