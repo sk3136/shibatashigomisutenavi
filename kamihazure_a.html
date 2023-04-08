@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>新発田市小舟町ゴミ捨てナビ</title>
+<title>新発田市上端の一部(火木土)ゴミ捨てナビ</title>
 <script>
 function moeru() {
     var now = new Date();
@@ -44,12 +44,12 @@ function moeru() {
     }
 }
 
-var moenaiCalendar = ['0414', '0519', '0616', '0714','0818','0915','1020','1117','1215','1312','1409','1515'];
-var akikanCalendar = ['0407', '0421', '0512', '0526','0609','0623','0707', '0721', '0804', '0825','0908','0922','1013','1027','1110','1124','1208','1222','1305','1319','1402','1416','1508','1522'];
-var happouCalendar = ['0407','0512','0609','0707','0804','0908','1013', '1110', '1208','1305','1402','1508'];
-var furununoCalendar = ['0421', '0526', '0623', '0721','0825','0922','1027','1124','1222','1319','1416','1522'];
-var sinbunCalendar = ['0412', '0427', '0517', '0529','0614','0629','0712', '0727', '0821', '0830','0913','0928','1016','1026','1115','1129','1213','1227','1317','1329','1414','1428','1513','1528'];
-var akibinCalendar = ['0428', '0530', '0630', '0728','0831','0929','1027','1130','1228','1330','1429','1529'];
+var moenaiCalendar = ['0412','0517','0614','0712','0816','0913','1018','1115','1220','1317','1414','1513'];
+var akikanCalendar = ['0405','0419','0510','0524','0607','0621','0705','0719','0809','0823','0906','0920','1011','1025','1108','1122','1213','1227','1310','1324','1407','1421','1506','1527'];
+var happouCalendar = ['0405','0510','0607','0705','0809','0906','1011','1108','1213','1310','1407','1506'];
+var furununoCalendar = ['0419','0524','0621','0719','0823','0920','1025','1122','1227','1324','1421','1527'];
+var sinbunCalendar = ['0403','0418','0501','0518','0602','0620','0703','0718','0802','0822','0901','0919','1002','1017','1101','1116','1201','1219','1305','1318','1402','1415','1501','1518'];
+var akibinCalendar = ['0419','0519','0621','0719','0823','0920','1018','1117','1220','1319','1416','1519'];
 var answerDates = [];
 
 function answer(calendar) {
@@ -135,6 +135,7 @@ h1 {
     color: #ffffff;
     padding: 8px;
     padding-top: 14px;
+    font-size: 27.5px;
 }
 p {
     margin: 3px;
@@ -148,7 +149,7 @@ button {
 </style>
 </head>
 <body style="text-align: center">
-<h1>新発田市小舟町<br>ゴミ捨てナビ</h1>
+<h1>新発田市上端の一部(火木土)<br>ゴミ捨てナビ</h1>
 <p>2023年4月～2024年3月</p>
 <p>ゴミの種類をタップすると<br>その種類の一覧表が出ます</p>
 <table>
@@ -157,31 +158,31 @@ button {
         <th>次の収集日</th>
     </tr>
     <tr>
-        <td><a href="moeru_kofune.html">燃えるゴミ</a></td>
+        <td><a href="moeru_kamihazure_a.html">燃えるゴミ</a></td>
         <td id="moeru"></td>
     </tr>
     <tr>
-        <td><a href="moenai_kofune.html">燃えないゴミ</a></td>
+        <td><a href="moenai_kamihazure_a.html">燃えないゴミ</a></td>
         <td id="moenai"></td>
     </tr>
     <tr>
-        <td><a href="akikan_kofune.html">空き缶類</a></td>
+        <td><a href="akikan_kamihazure_a.html">空き缶類</a></td>
         <td id="akikan"></td>
     </tr>
     <tr>
-        <td><a href="happou_kofune.html">発泡スチロール</a></td>
+        <td><a href="happou_kamihazure_a.html">発泡スチロール</a></td>
         <td id="happou"></td>
     </tr>
     <tr>
-        <td><a href="furununo_kofune.html">古布</a></td>
+        <td><a href="furununo_kamihazure_a.html">古布</a></td>
         <td id="furununo"></td>
     </tr>
     <tr>
-        <td style="font-size: 15px;"><a href="sinbun_kofune.html">新聞、段ボール、雑誌、チラシ</a></td>
+        <td style="font-size: 15px;"><a href="sinbun_kamihazure_a.html">新聞、段ボール、雑誌、チラシ</a></td>
         <td id="sinbun"></td>
     </tr>
     <tr>
-        <td><a href="akibin_kofune.html">空き瓶</a></td>
+        <td><a href="akibin_kamihazure_a.html">空き瓶</a></td>
         <td id="akibin"></td>
     </tr>
 </table>
