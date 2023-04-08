@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>燃えるゴミ一覧</title>
+<!--外部のstyle.cssというファイルを読み込む-->
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<table id="targetTable">
+    <th>燃えるゴミ一覧</th>
+</table>
+<!--ボタンにリンクを貼る-->
+<a href="hontyou.html"><button>戻る</button></a>
+<script>
+    var moeruitiran = ['衣装ケース(素材：プラスチック）','インクジェットカートリッジ（素材：プラスチック）','枝類（素材：木）','落ち葉・枯れ葉','貝殻','カイロ（使い捨て）','傘（布部分）','紙おむつ','紙パック（素材：紙）（内側が銀色のもの）','クーラーボックス（素材：プラスチック）','ゴルフバッグ','酒パック（素材：紙）（内側が銀色のもの）','CD・DVD・MD（素材:プラスチック）','シャンプー等の容器（素材：プラスチック）','シュレッダー紙（素材：紙）','食用油（使用済み天ぷら油）（素材：動物性油）','食用油のボトル（素材：プラスチック）','スーツケース（金属部分無）','スキーブーツ','卵パック（素材：プラスチック）','電気毛布（布部分）','灯油用ポリタンク（素材：プラスチック）','納豆の容器（素材：発泡スチロール）','生ごみ','ノン・カーボン紙（素材：紙）','フロッピーディスク（素材：プラスチック）','ペット用トイレ砂（素材：可燃性のもの）','ヘルメット（素材：プラスチック）','ペンキ・塗料（少量）','ホットカーペット（布部分）','保冷剤','レジ袋（素材：プラスチック）','カーペット・じゅうたん（素材：毛・プラスチック）']
+    window.onload = function() {
+        // リストの長さの分だけ繰り返す
+        for (var i = 0; i < moeruitiran.length; i++) {
+            // targetTableというidのついたテーブルを取得する
+            let table = document.getElementById('targetTable');
+            //行を追加する
+            let newRow = table.insertRow();
+            //セルを追加する
+            let newCell = newRow.insertCell();
+            // moeruitiranのi番目を取得する
+            let newText = document.createTextNode(moeruitiran[i]);
+            // セルにテキストを追加する
+            newCell.appendChild(newText);
+        }
+    }
+</script>
+</body>
+</html>
