@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>新発田市本町ゴミ捨てナビ</title>
+<title>新発田市本町ごみ捨てナビ</title>
 <script>
 function moeru() {
     var now = new Date();
@@ -127,7 +127,7 @@ window.onload = function() {
     answer(furununoCalendar);
     answer(sinbunCalendar);
     answer(akibinCalendar);
-    // Id moenaiをにanswerDatesの0番に書き換える
+    // Id moenaiをanswerDatesの0番に書き換える
     document.getElementById('moenai').textContent = answerDates[0];
     document.getElementById('akikan').textContent = answerDates[1];
     document.getElementById('happou').textContent = answerDates[2];
@@ -183,23 +183,23 @@ button {
 <!--全体を中央に寄せる-->
 <body style="text-align: center">
 <!--<h1>で大見出し（題名などを書く）、<br>で改行-->
-<h1>新発田市本町<br>ゴミ捨てナビ</h1>
+<h1>新発田市本町<br>ごみ捨てナビ</h1>
 <!--<p>段落（本文を書く時に使う）-->
 <p>2023年4月～2024年3月</p>
-<p>ゴミの種類をタップすると<br>その種類の一覧表が出ます</p>
+<p>ごみの種類をタップすると<br>その種類の一覧表が出ます</p>
 <table>
     <tr>
-        <th>ゴミの種類</th>
+        <th>ごみの種類</th>
         <th>次の収集日</th>
     </tr>
     <tr>
         <!--セルにリンクを貼る-->
-        <td><a href="moeru_hon.html">燃えるゴミ</a></td>
-        <!--燃えるゴミの収集日の欄にmoeruというIdをつけている-->
+        <td><a href="moeru_hon.html">燃えるごみ</a></td>
+        <!--燃えるごみの収集日の欄にmoeruというIdをつけている-->
         <td id="moeru"></td>
     </tr>
     <tr>
-        <td><a href="moenai_hon.html">燃えないゴミ</a></td>
+        <td><a href="moenai_hon.html">燃えないごみ</a></td>
         <td id="moenai"></td>
     </tr>
     <tr>
@@ -219,11 +219,11 @@ button {
         <td id="sinbun"></td>
     </tr>
     <tr>
-        <td><a href="akibin_hon.html">空き瓶</a></td>
+        <td><a href="akibin_hon.html">空きびん</a></td>
         <td id="akibin"></td>
     </tr>
 </table>
 <p>詳しい分別方法は<a href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/dashikata/1001150.html">市のホームページ</a>で<br>確認してください。</p>
-<a href="index.html"><button>新発田市ゴミ捨てナビに戻る</button></a>
+<a href="index.html"><button>新発田市ごみ捨てナビに戻る</button></a>
 </body>
 </html>
