@@ -87,174 +87,118 @@
         div_select.style.display = 'none';
         var div_result = document.getElementById('result');
         div_result.style.display = 'block';
+        document.getElementById('title_4').textContent = '発泡スチロール';
+        document.getElementById('title_5').textContent = '古布';
+        document.getElementById('title_5').setAttribute('class','');
+        document.getElementById('title_6').textContent = '新聞、段ボール、雑誌、チラシ';
+        document.getElementById('title_6').setAttribute('class','long_title');
+        document.getElementById('title_7').textContent = '空きびん';
+
         if (selected_area.value == 'a_1') {
             moeru_a_1();
-            answer(moenaiCalendar_a_1);
-            answer(akikanCalendar_a_1);
-            answer(happouCalendar_a_1);
-            answer(furununoCalendar_a_1);
-            answer(sinbunCalendar_a_1);
-            answer(akibinCalendar_a_1);
+            for (var i = 0; i < Calendar_a_1.length; i++) {
+                answer(Calendar_a_1[i]);
+            }
         } else if (selected_area.value == 'a_2') {
             moeru_a_2();
-            answer(moenaiCalendar_a_2);
-            answer(akikanCalendar_a_2);
-            answer(happouCalendar_a_2);
-            answer(furununoCalendar_a_2);
-            answer(sinbunCalendar_a_2);
-            answer(akibinCalendar_a_2);
+            for (var i = 0; i < Calendar_a_2.length; i++) {
+                answer(Calendar_a_2[i]);
+            }
         } else if (selected_area.value == 'b_3') {
             moeru_b_3();
-            answer(moenaiCalendar_b_3);
-            answer(akikanCalendar_b_3);
-            answer(happouCalendar_b_3);
-            answer(furununoCalendar_b_3);
-            answer(sinbunCalendar_b_3);
-            answer(akibinCalendar_b_3);
+            for (var i = 0; i < Calendar_b_3.length; i++) {
+                answer(Calendar_b_3[i]);
+            }
         } else if (selected_area.value == 'c_4') {
             moeru_c_4();
-            answer(moenaiCalendar_c_4);
-            answer(akikanCalendar_c_4);
-            answer(happouCalendar_c_4);
-            answer(furununoCalendar_c_4);
-            answer(sinbunCalendar_c_4);
-            answer(akibinCalendar_c_4);
+            for (var i = 0; i < Calendar_c_4.length; i++) {
+                answer(Calendar_c_4[i]);
+            }
         } else if (selected_area.value == 'c_5') {
             moeru_c_5();
-            answer(moenaiCalendar_c_5);
-            answer(akikanCalendar_c_5);
-            answer(happouCalendar_c_5);
-            answer(furununoCalendar_c_5);
-            answer(sinbunCalendar_c_5);
-            answer(akibinCalendar_c_5);
+            for (var i = 0; i < Calendar_c_5.length; i++) {
+                answer(Calendar_c_5[i]);
+            }
         } else if (selected_area.value == 'd_6') {
             moeru_d_6();
-            answer(moenaiCalendar_d_6);
-            answer(akikanCalendar_d_6);
-            answer(happouCalendar_d_6);
-            answer(furununoCalendar_d_6);
-            answer(sinbunCalendar_d_6);
-            answer(akibinCalendar_d_6);
+            for (var i = 0; i < Calendar_d_6.length; i++) {
+                answer(Calendar_d_6[i]);
+            }
         } else if (selected_area.value == 'd_6_2') {
             moeru_d_6_2();
-            answer(moenaiCalendar_d_6_2);
-            answer(akikanCalendar_d_6_2);
-            answer(happouCalendar_d_6_2);
-            answer(furununoCalendar_d_6_2);
-            answer(sinbunCalendar_d_6_2);
-            answer(akibinCalendar_d_6_2);
+            for (var i = 0; i < Calendar_d_6_2.length; i++) {
+                answer(Calendar_d_6_2[i]);
+            }
         } else if (selected_area.value == 'e_7') {
             moeru_e_7();
-            answer(moenaiCalendar_e_7);
-            answer(akikanCalendar_e_7);
-            answer(happouCalendar_e_7);
-            answer(furununoCalendar_e_7);
-            answer(sinbunCalendar_e_7);
-            answer(akibinCalendar_e_7);
+            for (var i = 0; i < Calendar_e_7.length; i++) {
+                answer(Calendar_e_7[i]);
+            }
         } else if (selected_area.value == 'e_8') {
             moeru_e_8();
-            answer(moenaiCalendar_e_8);
-            answer(akikanCalendar_e_8);
-            answer(happouCalendar_e_8);
-            answer(furununoCalendar_e_8);
-            answer(sinbunCalendar_e_8);
-            answer(akibinCalendar_e_8);
+            for (var i = 0; i < Calendar_e_8.length; i++) {
+                answer(Calendar_e_8[i]);
+            }
         } else if (selected_area.value == 'f_9') {
             moeru_f_9();
-            answer(moenaiCalendar_f_9);
-            answer(akikanCalendar_f_9);
-            answer(happouCalendar_f_9);
-            answer(furununoCalendar_f_9);
-            answer(sinbunCalendar_f_9);
-            answer(akibinCalendar_f_9);
+            for (var i = 0; i < Calendar_f_9.length; i++) {
+                answer(Calendar_f_9[i]);
+            }
         } else if (selected_area.value == 'g_10') {
             moeru_g_10();
-            answer(moenaiCalendar_g_10);
-            answer(akikanCalendar_g_10);
-            answer(happouCalendar_g_10);
-            answer(furununoCalendar_g_10);
-            answer(sinbunCalendar_g_10);
-            answer(akibinCalendar_g_10);
+            for (var i = 0; i < Calendar_g_10.length; i++) {
+                answer(Calendar_g_10[i]);
+            }
         } else if (selected_area.value == 'g_11') {
             moeru_g_11();
-            answer(moenaiCalendar_g_11);
-            answer(akikanCalendar_g_11);
-            answer(happouCalendar_g_11);
-            answer(furununoCalendar_g_11);
-            answer(sinbunCalendar_g_11);
-            answer(akibinCalendar_g_11);
+            for (var i = 0; i < Calendar_g_11.length; i++) {
+                answer(Calendar_g_11[i]);
+            }
         } else if (selected_area.value == 'h_12') {
             moeru_h_12();
-            answer(moenaiCalendar_h_12);
-            answer(akikanCalendar_h_12);
-            answer(happouCalendar_h_12);
-            answer(furununoCalendar_h_12);
-            answer(sinbunCalendar_h_12);
-            answer(akibinCalendar_h_12);
+            for (var i = 0; i < Calendar_h_12.length; i++) {
+                answer(Calendar_h_12[i]);
+            }
         } else if (selected_area.value == 'h_12_2') {
             moeru_h_12_2();
-            answer(moenaiCalendar_h_12_2);
-            answer(akikanCalendar_h_12_2);
-            answer(happouCalendar_h_12_2);
-            answer(furununoCalendar_h_12_2);
-            answer(sinbunCalendar_h_12_2);
-            answer(akibinCalendar_h_12_2);
+            for (var i = 0; i < Calendar_h_12_2.length; i++) {
+                answer(Calendar_h_12_2[i]);
+            }
         } else if (selected_area.value == 't_13') {
             moeru_t_13();
-            answer(moenaiCalendar_t_13);
-            answer(akikanCalendar_t_13);
-            answer(happouCalendar_t_13);
-            answer(furununoCalendar_t_13);
-            answer(sinbunCalendar_t_13);
-            answer(akibinCalendar_t_13);
+            for (var i = 0; i < Calendar_t_13.length; i++) {
+                answer(Calendar_t_13[i]);
+            }
         } else if (selected_area.value == 't_14') {
             moeru_t_14();
-            answer(moenaiCalendar_t_14);
-            answer(akikanCalendar_t_14);
-            answer(happouCalendar_t_14);
-            answer(furununoCalendar_t_14);
-            answer(sinbunCalendar_t_14);
-            answer(akibinCalendar_t_14);
+            for (var i = 0; i < Calendar_t_14.length; i++) {
+                answer(Calendar_t_14[i]);
+            }
         } else if (selected_area.value == 'k_15') {
             moeru_k_15();
-            answer(moenaiCalendar_k_15);
-            answer(akikanCalendar_k_15);
-            answer(happouCalendar_k_15);
-            answer(furununoCalendar_k_15);
-            answer(sinbunCalendar_k_15);
-            answer(akibinCalendar_k_15);
+            for (var i = 0; i < Calendar_k_15.length; i++) {
+                answer(Calendar_k_15[i]);
+            }
         } else if (selected_area.value == 'k_16') {
             moeru_k_16();
-            answer(moenaiCalendar_k_16);
-            answer(akikanCalendar_k_16);
-            answer(happouCalendar_k_16);
-            answer(furununoCalendar_k_16);
-            answer(sinbunCalendar_k_16);
-            answer(akibinCalendar_k_16);
+            for (var i = 0; i < Calendar_k_16.length; i++) {
+                answer(Calendar_k_16[i]);
+            }
         } else if (selected_area.value == 'k_16_2') {
             moeru_k_16_2();
-            answer(moenaiCalendar_k_16_2);
-            answer(akikanCalendar_k_16_2);
-            answer(happouCalendar_k_16_2);
-            answer(furununoCalendar_k_16_2);
-            answer(sinbunCalendar_k_16_2);
-            answer(akibinCalendar_k_16_2);
+            for (var i = 0; i < Calendar_k_16_2.length; i++) {
+                answer(Calendar_k_16_2[i]);
+            }
         } else if (selected_area.value == 's_17') {
             moeru_s_17();
-            answer(moenaiCalendar_s_17);
-            answer(akikanCalendar_s_17);
-            answer(happouCalendar_s_17);
-            answer(furununoCalendar_s_17);
-            answer(sinbunCalendar_s_17);
-            answer(akibinCalendar_s_17);
+            for (var i = 0; i < Calendar_s_17.length; i++) {
+                answer(Calendar_s_17[i]);
+            }
         } else if (selected_area.value == 's_18') {
             moeru_s_18();
-            answer(moenaiCalendar_s_18);
-            answer(akikanCalendar_s_18);
-            answer(happouCalendar_s_18);
-            answer(furununoCalendar_s_18);
-            answer(sinbunCalendar_s_18);
-            answer(akibinCalendar_s_18);
+            for (var i = 0; i < Calendar_s_18.length; i++) {
+                answer(Calendar_s_18[i]);
+            }
         }
 
         selected_area.options[0].selected = true;
@@ -305,17 +249,18 @@ h1 {
     color: #ffffff;
     padding: 8px;
     padding-top: 14px;
+    margin: auto;
 }
 p {
-    margin: 7px;
-    font-size: 25px;
+    margin: 5px;
+    font-size: 20px;
 }
 table tr:nth-child(odd){
     background-color: #e2e0e0;
 }
 table {
     font-size: 18px;
-    margin: 15px auto;
+    margin: 10px auto;
     border-collapse: collapse;
 }
 td {
@@ -342,6 +287,9 @@ option {
 }
 button {
     font-size: 20px;
+}
+.long_title {
+    font-size: 15px;
 }
 </style>
 </head>
@@ -638,7 +586,7 @@ button {
 <h1>新発田市<br><a id="title"></a><br>ごみ捨てナビ</h1>
 <p><a id="now_version_result"></p>
 
-<table>
+<table id="table">
     <tr>
         <th>ごみの種類</th>
         <th>次の収集日</th>
@@ -656,19 +604,19 @@ button {
         <td id="akikan"></td>
     </tr>
     <tr>
-        <td>発泡スチロール</td>
+        <td id="title_4"></td>
         <td id="happou"></td>
     </tr>
     <tr>
-        <td>古布</td>
+        <td id="title_5"></td>
         <td id="furununo"></td>
     </tr>
     <tr>
-        <td style="font-size: 15px;">新聞、段ボール、雑誌、チラシ</td>
+        <td id="title_6"></td>
         <td id="sinbun"></td>
     </tr>
     <tr>
-        <td>空きびん</td>
+        <td id="title_7"></td>
         <td id="akibin"></td>
     </tr>
 </table>
