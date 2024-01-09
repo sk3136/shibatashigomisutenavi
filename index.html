@@ -5,33 +5,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>新発田市ごみ捨てナビ</title>
 <script>
-    // 変数nowに現在の年月日データを入れる
+    // 現在の年月日データを取得
     var now = new Date();
     // 現在の年を取得
     var year = now.getFullYear();
-    // 変数monthにnowから月のデータを取って入れる（1月が0から始まっているから1を足す）
+    // 現在の月を取得（1月が0から始まっているから1を足す）
     var month = now.getMonth() + 1;
-    var date = now.getDate();
-    var dayOfWeek = now.getDay();
     var answerDates = [];
 
-    // 関数answerに入っているリストをリストcalendarに入れる
+    // 関数answerに入れられたリストをリスト（引数）calendarに入れる
     function answer(calendar) {
         if (month < 4) {
-            // monthをmonthに12を足した数にする
             month = month + 12;
         }
-        // 変数dateにnowから日のデータを取っていれる
-        var date = now.getDate();
-        // calendarの長さだけ繰り返す
         for (var i = 0; i < calendar.length; i++) {
             if (month > 12) {
                 // month2という変数を作りそれの中にcalendarの月から12を引いた数を入れる
                 var month2 = calendar[i].slice(0,2) - 12;
             } else {
-                var month2 = month
+                month2 = month
             }
-            // もし今日の月とカレンダーの月が等しかったら
+            var date = now.getDate();
+            var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
+            // もし現在の月とカレンダーの月が等しかったら
             if (month == calendar[i].slice(0,2)) {
                 // もし今日の日付けがカレンダーの日付けよりも小さかったら
                 if (date < calendar[i].slice(2,4)) {
@@ -39,12 +35,10 @@
                     var answerDate = new Date(year, month2 - 1, calendar[i].slice(2,4));
                     // 次の収集日の曜日を取得する
                     var dayOfWeek = answerDate.getDay();
-                    var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
                     // 次の収集日を表示する
                     answerDates.push(month2 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
                     break;
                 } else {
-                    // if文の場合（）がそのif文が発動する条件で｛｝が処理 　もしカレンダーの一番最後の日付けなら
                     if (i == calendar.length - 1) {
                         answerDates.push('次の収集日は市のホームページで確認してください。');
                     }
@@ -55,18 +49,14 @@
                     month2 = 0;
                     year = year + 1;
                 }
-                var answerDate = new Date(year, month2, calendar[i].slice(2,4));
-                var dayOfWeek = answerDate.getDay();
-                var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
-                // もしcalendarが12よりも大きかったら
+                answerDate = new Date(year, month2, calendar[i].slice(2,4));
+                dayOfWeek = answerDate.getDay();
                 answerDates.push(month2 + 1 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
-                // ループから抜け出す
                 break;
             }
         }
     }
 
-    // このプログラムを開いたときに実行する
     window.onload = function() {
         var div_select = document.getElementById('select');
         div_select.style.display = 'block';

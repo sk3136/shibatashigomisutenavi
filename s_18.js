@@ -3,13 +3,13 @@ var Calendar_s_18 = [
     ['04','05','06','07','08','09','10','11','12','13','14','15'],
     // akikan
     ['04','04','05','05','06','06','07','07','08','08','09','09','10','10','11','11','12','12','13','13','14','14','15','15'],
-    // happou
+    // zassirui
     ['04','05','06','07','08','09','10','11','12','13','14','15'],
-    // furununo
+    // akibin
     ['04','05','06','07','08','09','10','11','12','13','14','15'],
     // sinbun
     ['04','05','06','07','08','09','10','11','12','13','14','15'],
-    // akibin
+    // furununo
     ['04','05','06','07','08','09','10','11','12','13','14','15']
 ];
 
@@ -52,7 +52,7 @@ function moeru_s_18() {
     }
 
     document.getElementById('title_4').textContent = '雑誌類';
-    document.getElementById('title_5').textContent = '段ボール、空きびん、発泡スチロール';
+    document.getElementById('title_5').textContent = '空きびん、段ボール、発泡スチロール';
     document.getElementById('title_5').setAttribute('class','long_title');
     document.getElementById('title_6').textContent = '新聞';
     document.getElementById('title_6').setAttribute('class','');

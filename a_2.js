@@ -50,10 +50,4 @@ function moeru_a_2() {
         date = now.getDate();
         document.getElementById('moeru').textContent = month + '/' + date + '(月)';
     }
-    
-    document.getElementById('title_4').textContent = '発泡スチロール';
-    document.getElementById('title_5').textContent = '古布';
-    document.getElementById('title_6').textContent = '新聞、段ボール、雑誌、チラシ';
-    document.getElementById('title_6').setAttribute('class','long_title');
-    document.getElementById('title_7').textContent = '空きびん';
 }
