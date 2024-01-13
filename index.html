@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>新発田市ごみ捨てナビ</title>
+<script type="text/javascript" src="kyuushibata.js"></script>
+<script type="text/javascript" src="toyoura.js"></script>
 <script>
     // 現在の年月日データを取得
     var now = new Date();
@@ -11,6 +13,8 @@
     var year = now.getFullYear();
     // 現在の月を取得（1月が0から始まっているから1を足す）
     var month = now.getMonth() + 1;
+    var date = now.getDate();
+    var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
     var answerDates = [];
 
     // 関数answerに入れられたリストをリスト（引数）calendarに入れる
@@ -25,8 +29,6 @@
             } else {
                 month2 = month
             }
-            var date = now.getDate();
-            var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
             // もし現在の月とカレンダーの月が等しかったら
             if (month == calendar[i].slice(0,2)) {
                 // もし今日の日付けがカレンダーの日付けよりも小さかったら
@@ -57,6 +59,109 @@
         }
     }
 
+    var impossible_date = [];
+    var moeru_contents = '';
+    function moeru(mode, setdate) {
+        var month_now = setdate.getMonth() + 1;
+        var date_now = setdate.getDate();
+        var dayOfWeek_now = setdate.getDay();
+        // 月水金
+        if (mode == 1) {
+            if (dayOfWeek_now == 0 || dayOfWeek_now == 2 || dayOfWeek_now == 4) {
+                setdate.setDate(date_now + 1);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else if (dayOfWeek_now == 1 || dayOfWeek_now == 3 || dayOfWeek_now == 6) {
+                setdate.setDate(date_now + 2);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else {
+                setdate.setDate(date_now + 3);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                moeru_contents = month_now + '/' + date_now + '(月)';
+            }
+        // 火木土
+        } else if (mode == 2) {
+            if (dayOfWeek_now == 1 || dayOfWeek_now == 3 || dayOfWeek_now == 5) {
+                setdate.setDate(date_now + 1);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else if (dayOfWeek_now == 0 || dayOfWeek_now == 2 || dayOfWeek_now == 4) {
+                setdate.setDate(date_now + 2);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else {
+                setdate.setDate(date_now + 3);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                moeru_contents = month_now + '/' + date_now + '(火)';
+            }
+        // 火金
+        } else {
+            if (dayOfWeek_now == 1 || dayOfWeek_now == 4) {
+                setdate.setDate(date_now + 1);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else if (dayOfWeek_now == 0 || dayOfWeek_now == 3) {
+                setdate.setDate(date_now + 2);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else if (dayOfWeek_now == 2 || dayOfWeek_now == 6) {
+                setdate.setDate(date_now + 3);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                dayOfWeek_now = setdate.getDay();
+                moeru_contents = month_now + '/' + date_now + '(' + weekKanji[dayOfWeek_now] + ')';
+            } else {
+                setdate.setDate(date_now + 4);
+                month_now = setdate.getMonth() + 1;
+                date_now = setdate.getDate();
+                moeru_contents = month_now + '/' + date_now + '(火)';
+            }
+        }
+
+        var month_and_date = String('');
+        if (month_now <= 3) {
+            if (String(date_now).length == 1) {
+                month_and_date = String(Number(month_now + 12)) + '0' + String(date_now);
+            } else {
+                month_and_date = String(Number(month_now + 12)) + String(date_now);
+            }
+        } else {
+            if (String(month_now).length == 1 && String(date_now).length == 1) {
+                month_and_date = '0' + String(month_now) + '0' + String(date_now);
+            } else if (String(month_now).length == 2 && String(date_now).length == 1) {
+                month_and_date = String(month_now) + '0' + String(date_now);
+            } else if (String(month_now).length == 1 && String(date_now).length == 2) {
+                month_and_date = '0' + String(month_now) + String(date_now);
+            } if (String(month_now).length == 2 && String(date_now).length == 2) {
+                month_and_date = String(month_now) + String(date_now);
+            }
+        }
+        for (var n = 0; n < impossible_date.length; n++) {
+            if (impossible_date[n] == month_and_date) {
+                moeru(mode, setdate);
+            }
+        }
+        if (month == 15 && month_now >= 4) {
+            moeru_contents= '次の収集日は市役所のホームページで確認してください。';
+        }
+        document.getElementById('moeru').textContent = moeru_contents;
+    }
+
     window.onload = function() {
         var div_select = document.getElementById('select');
         div_select.style.display = 'block';
@@ -84,115 +189,146 @@
         document.getElementById('title_6').setAttribute('class','long_title');
         document.getElementById('title_7').textContent = '空きびん';
 
+        now = new Date();
         if (selected_area.value == 'a_1') {
-            moeru_a_1();
+            impossible_date = [];
             for (var i = 0; i < Calendar_a_1.length; i++) {
                 answer(Calendar_a_1[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'a_2') {
-            moeru_a_2();
+            impossible_date = [];
             for (var i = 0; i < Calendar_a_2.length; i++) {
                 answer(Calendar_a_2[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'b_3') {
-            moeru_b_3();
+            impossible_date = [];
             for (var i = 0; i < Calendar_b_3.length; i++) {
                 answer(Calendar_b_3[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'c_4') {
-            moeru_c_4();
+            impossible_date = [];
             for (var i = 0; i < Calendar_c_4.length; i++) {
                 answer(Calendar_c_4[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'c_5') {
-            moeru_c_5();
+            impossible_date = [];
             for (var i = 0; i < Calendar_c_5.length; i++) {
                 answer(Calendar_c_5[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'd_6') {
-            moeru_d_6();
+            impossible_date = [];
             for (var i = 0; i < Calendar_d_6.length; i++) {
                 answer(Calendar_d_6[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'd_6_2') {
-            moeru_d_6_2();
+            impossible_date = [];
             for (var i = 0; i < Calendar_d_6_2.length; i++) {
                 answer(Calendar_d_6_2[i]);
             }
+            moeru(3, now);
         } else if (selected_area.value == 'e_7') {
-            moeru_e_7();
+            impossible_date = [];
             for (var i = 0; i < Calendar_e_7.length; i++) {
                 answer(Calendar_e_7[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'e_8') {
-            moeru_e_8();
+            impossible_date = [];
             for (var i = 0; i < Calendar_e_8.length; i++) {
                 answer(Calendar_e_8[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'f_9') {
-            moeru_f_9();
+            impossible_date = [];
             for (var i = 0; i < Calendar_f_9.length; i++) {
                 answer(Calendar_f_9[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'g_10') {
-            moeru_g_10();
+            impossible_date = [];
             for (var i = 0; i < Calendar_g_10.length; i++) {
                 answer(Calendar_g_10[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'g_11') {
-            moeru_g_11();
+            impossible_date = [];
             for (var i = 0; i < Calendar_g_11.length; i++) {
                 answer(Calendar_g_11[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'h_12') {
-            moeru_h_12();
+            impossible_date = [];
             for (var i = 0; i < Calendar_h_12.length; i++) {
                 answer(Calendar_h_12[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'h_12_2') {
-            moeru_h_12_2();
+            impossible_date = [];
             for (var i = 0; i < Calendar_h_12_2.length; i++) {
                 answer(Calendar_h_12_2[i]);
             }
+            moeru(3, now);
         } else if (selected_area.value == 't_13') {
-            moeru_t_13();
+            impossible_date = [];
             for (var i = 0; i < Calendar_t_13.length; i++) {
                 answer(Calendar_t_13[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 't_14') {
-            moeru_t_14();
+            impossible_date = [];
             for (var i = 0; i < Calendar_t_14.length; i++) {
                 answer(Calendar_t_14[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'k_15') {
-            moeru_k_15();
+            impossible_date = [];
             for (var i = 0; i < Calendar_k_15.length; i++) {
                 answer(Calendar_k_15[i]);
             }
+            moeru(1, now);
         } else if (selected_area.value == 'k_16') {
-            moeru_k_16();
+            impossible_date = [];
             for (var i = 0; i < Calendar_k_16.length; i++) {
                 answer(Calendar_k_16[i]);
             }
+            moeru(2, now);
         } else if (selected_area.value == 'k_16_2') {
-            moeru_k_16_2();
+            impossible_date = [];
             for (var i = 0; i < Calendar_k_16_2.length; i++) {
                 answer(Calendar_k_16_2[i]);
             }
+            moeru(3, now);
         } else if (selected_area.value == 's_17') {
-            moeru_s_17();
+            impossible_date = [];
             for (var i = 0; i < Calendar_s_17.length; i++) {
                 answer(Calendar_s_17[i]);
             }
+            moeru(1, now);
+            document.getElementById('title_4').textContent = '雑誌類';
+            document.getElementById('title_5').textContent = '段ボール';
+            document.getElementById('title_6').textContent = '空きびん、新聞、発泡スチロール';
+            document.getElementById('title_7').textContent = '古布';
         } else if (selected_area.value == 's_18') {
-            moeru_s_18();
+            impossible_date = [];
             for (var i = 0; i < Calendar_s_18.length; i++) {
                 answer(Calendar_s_18[i]);
             }
+            moeru(1, now);
+            document.getElementById('title_4').textContent = '雑誌類';
+            document.getElementById('title_5').textContent = '空きびん、段ボール、発泡スチロール';
+            document.getElementById('title_5').setAttribute('class','long_title');
+            document.getElementById('title_6').textContent = '新聞';
+            document.getElementById('title_6').setAttribute('class','');
+            document.getElementById('title_7').textContent = '古布';
         }
 
         selected_area.options[0].selected = true;
-        // Id moenaiをにanswerDatesの0番に書き換える
         document.getElementById('moenai').textContent = answerDates[0];
         document.getElementById('akikan').textContent = answerDates[1];
         document.getElementById('happou').textContent = answerDates[2];
@@ -208,28 +344,6 @@
         div_result.style.display = 'none';
     }
 </script>
-<script type="text/javascript" src="a_1.js"></script>
-<script type="text/javascript" src="a_2.js"></script>
-<script type="text/javascript" src="b_3.js"></script>
-<script type="text/javascript" src="c_4.js"></script>
-<script type="text/javascript" src="c_5.js"></script>
-<script type="text/javascript" src="d_6.js"></script>
-<script type="text/javascript" src="d_6_2.js"></script>
-<script type="text/javascript" src="e_7.js"></script>
-<script type="text/javascript" src="e_8.js"></script>
-<script type="text/javascript" src="f_9.js"></script>
-<script type="text/javascript" src="g_10.js"></script>
-<script type="text/javascript" src="g_11.js"></script>
-<script type="text/javascript" src="h_12.js"></script>
-<script type="text/javascript" src="h_12_2.js"></script>
-<script type="text/javascript" src="t_13.js"></script>
-<script type="text/javascript" src="t_14.js"></script>
-<script type="text/javascript" src="k_15.js"></script>
-<script type="text/javascript" src="k_16.js"></script>
-<script type="text/javascript" src="k_16_2.js"></script>
-<script type="text/javascript" src="s_17.js"></script>
-<script type="text/javascript" src="s_18.js"></script>
-
 <style>
 body {
     background-color: rgb(253, 253, 253);
