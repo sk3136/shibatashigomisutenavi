@@ -13,47 +13,41 @@
     var year = now.getFullYear();
     // 現在の月を取得（1月が0から始まっているから1を足す）
     var month = now.getMonth() + 1;
+    if (month < 4) {
+        month = month + 12;
+    }
     var date = now.getDate();
     var weekKanji = ['日', '月', '火', '水', '木', '金', '土'];
     var answerDates = [];
 
     // 関数answerに入れられたリストをリスト（引数）calendarに入れる
     function answer(calendar) {
-        if (month < 4) {
-            month = month + 12;
-        }
         for (var i = 0; i < calendar.length; i++) {
             if (month > 12) {
-                // month2という変数を作りそれの中にcalendarの月から12を引いた数を入れる
-                var month2 = calendar[i].slice(0,2) - 12;
+                var month2 = month - 12;
             } else {
-                month2 = calendar[i].slice(0,2);
+                month2 = month;
             }
-            // もし現在の月とカレンダーの月が等しかったら
-            if (month == calendar[i].slice(0,2)) {
-                // もし今日の日付けがカレンダーの日付けよりも小さかったら
-                if (date < calendar[i].slice(2,4)) {
-                    // 次の収集日の年月日を取得
-                    var answerDate = new Date(year, month2 - 1, calendar[i].slice(2,4));
-                    // 次の収集日の曜日を取得する
-                    var dayOfWeek = answerDate.getDay();
-                    // 次の収集日を表示する
-                    answerDates.push(month2 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+
+            var calendar_month = Number(calendar[i].slice(0,2));
+            var calendar_date = Number(calendar[i].slice(2,4));
+            if (month == calendar_month) {
+                if (date < calendar_date) {
+                    var dayOfWeek = new Date(year, month2 - 1, calendar_date).getDay();
+                    answerDates.push(month2 + '/' + calendar_date + '(' + weekKanji[dayOfWeek] + ')');
                     break;
                 } else {
                     if (i == calendar.length - 1) {
                         answerDates.push('次の収集日は市のホームページで確認してください。');
                     }
                 }
-            // でなければもし今日の月がカレンダーの月よりも小さかったら
-            } else if (month < calendar[i].slice(0,2)) {
+            } else if (month < calendar_month) {
                 if (month == 12) {
                     month2 = month2 - 11;
                     year = year + 1;
                 }
-                answerDate = new Date(year, month2 - 1, calendar[i].slice(2,4));
-                dayOfWeek = answerDate.getDay();
-                answerDates.push(month2 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+                dayOfWeek = new Date(year, month2, calendar_date).getDay();
+                answerDates.push(month2 + 1 + '/' + calendar_date + '(' + weekKanji[dayOfWeek] + ')');
                 break;
             }
         }
@@ -180,7 +174,7 @@
             }
         }
         if (month == 15 && month_now >= 4) {
-            moeru_contents= '次の収集日は市役所のホームページで確認してください。';
+            moeru_contents= '次の収集日は市のホームページで確認してください。';
         }
         document.getElementById('moeru').textContent = moeru_contents;
     }
@@ -190,7 +184,7 @@
         div_select.style.display = 'block';
         var div_result = document.getElementById('result');
         div_result.style.display = 'none';
-        if (month != 1 && month != 2 && month != 3) {
+        if (month != 13 && month != 14 && month != 15) {
             document.getElementById('now_version_select').textContent = year + '年4月～' + Number(year + 1) + '年3月';
             document.getElementById('now_version_result').textContent = year + '年4月～' + Number(year + 1) + '年3月';
         } else {
