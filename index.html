@@ -48,23 +48,47 @@
             // でなければもし今日の月がカレンダーの月よりも小さかったら
             } else if (month < calendar[i].slice(0,2)) {
                 if (month == 12) {
-                    month2 = 0;
+                    month2 = month2 - 11;
                     year = year + 1;
                 }
-                answerDate = new Date(year, month2, calendar[i].slice(2,4));
+                answerDate = new Date(year, month2 - 1, calendar[i].slice(2,4));
                 dayOfWeek = answerDate.getDay();
-                answerDates.push(month2 + 1 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
+                answerDates.push(month2 + '/' + Number(calendar[i].slice(2,4)) + '(' + weekKanji[dayOfWeek] + ')');
                 break;
             }
         }
     }
 
+    function date_number_make(month_now, date_now) {
+        if (month_now <= 3) {
+            if (String(date_now).length == 1) {
+                return String(Number(month_now + 12)) + '0' + String(date_now);
+            } else {
+                return String(Number(month_now + 12)) + String(date_now);
+            }
+        } else {
+            if (String(month_now).length == 1 && String(date_now).length == 1) {
+                return '0' + String(month_now) + '0' + String(date_now);
+            } else if (String(month_now).length == 2 && String(date_now).length == 1) {
+                return String(month_now) + '0' + String(date_now);
+            } else if (String(month_now).length == 1 && String(date_now).length == 2) {
+                return '0' + String(month_now) + String(date_now);
+            } if (String(month_now).length == 2 && String(date_now).length == 2) {
+                return String(month_now) + String(date_now);
+            }
+        }
+    }
+
+    // 燃えるごみのなしになっている日付
     var impossible_date = [];
+    // 燃えるごみの回収日の曜日が基本の曜日ではない日付
+    var moeru_possible_date = [];
     var moeru_contents = '';
     function moeru(mode, setdate) {
         var month_now = setdate.getMonth() + 1;
         var date_now = setdate.getDate();
         var dayOfWeek_now = setdate.getDay();
+        var month_and_date_now = date_number_make(month_now, date_now);
         // 月水金
         if (mode == 1) {
             if (dayOfWeek_now == 0 || dayOfWeek_now == 2 || dayOfWeek_now == 4) {
@@ -133,24 +157,23 @@
             }
         }
 
-        var month_and_date = String('');
-        if (month_now <= 3) {
-            if (String(date_now).length == 1) {
-                month_and_date = String(Number(month_now + 12)) + '0' + String(date_now);
-            } else {
-                month_and_date = String(Number(month_now + 12)) + String(date_now);
-            }
-        } else {
-            if (String(month_now).length == 1 && String(date_now).length == 1) {
-                month_and_date = '0' + String(month_now) + '0' + String(date_now);
-            } else if (String(month_now).length == 2 && String(date_now).length == 1) {
-                month_and_date = String(month_now) + '0' + String(date_now);
-            } else if (String(month_now).length == 1 && String(date_now).length == 2) {
-                month_and_date = '0' + String(month_now) + String(date_now);
-            } if (String(month_now).length == 2 && String(date_now).length == 2) {
-                month_and_date = String(month_now) + String(date_now);
+        var month_and_date = date_number_make(month_now, date_now);
+        for (var a = 0; a < moeru_possible_date.length; a++) {
+            if (Number(moeru_possible_date[a]) > Number(month_and_date_now) && Number(moeru_possible_date[a]) < Number(month_and_date)) {
+                if (Number(moeru_possible_date[a].slice(0,2)) >= 13) {
+                    if (Number(month_and_date_now.slice(0,2)) == 12) {
+                        dayOfWeek_now = new Date(year + 1, Number(moeru_possible_date[a].slice(0,2)) - 13, Number(moeru_possible_date[a].slice(2,4))).getDay();
+                    } else {
+                        dayOfWeek_now = new Date(year, Number(moeru_possible_date[a].slice(0,2)) - 13, Number(moeru_possible_date[a].slice(2,4))).getDay();
+                    }
+                    moeru_contents = Number(moeru_possible_date[a].slice(0,2)) - 12 + '/' + Number(moeru_possible_date[a].slice(2,4)) + '(' + weekKanji[dayOfWeek_now] + ')';
+                } else {
+                    dayOfWeek_now = new Date(year, Number(moeru_possible_date[a].slice(0,2)) - 1, Number(moeru_possible_date[a].slice(2,4))).getDay();
+                    moeru_contents = Number(moeru_possible_date[a].slice(0,2)) + '/' + Number(moeru_possible_date[a].slice(2,4)) + '(' + weekKanji[dayOfWeek_now] + ')';
+                }
             }
         }
+
         for (var n = 0; n < impossible_date.length; n++) {
             if (impossible_date[n] == month_and_date) {
                 moeru(mode, setdate);
@@ -191,120 +214,140 @@
 
         now = new Date();
         if (selected_area.value == 'a_1') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_a_1.length; i++) {
                 answer(Calendar_a_1[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'a_2') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_a_2.length; i++) {
                 answer(Calendar_a_2[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'b_3') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_b_3.length; i++) {
                 answer(Calendar_b_3[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'c_4') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_c_4.length; i++) {
                 answer(Calendar_c_4[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'c_5') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_c_5.length; i++) {
                 answer(Calendar_c_5[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'd_6') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_d_6.length; i++) {
                 answer(Calendar_d_6[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'd_6_2') {
-            impossible_date = [];
+            moeru_possible_date = ['1230','1304','1410'];
+            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_d_6_2.length; i++) {
                 answer(Calendar_d_6_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 'e_7') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_e_7.length; i++) {
                 answer(Calendar_e_7[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'e_8') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_e_8.length; i++) {
                 answer(Calendar_e_8[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'f_9') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_f_9.length; i++) {
                 answer(Calendar_f_9[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'g_10') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_g_10.length; i++) {
                 answer(Calendar_g_10[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'g_11') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_g_11.length; i++) {
                 answer(Calendar_g_11[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'h_12') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_h_12.length; i++) {
                 answer(Calendar_h_12[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'h_12_2') {
-            impossible_date = [];
+            moeru_possible_date = ['1230','1304','1410'];
+            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_h_12_2.length; i++) {
                 answer(Calendar_h_12_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 't_13') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_t_13.length; i++) {
                 answer(Calendar_t_13[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 't_14') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_t_14.length; i++) {
                 answer(Calendar_t_14[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'k_15') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_k_15.length; i++) {
                 answer(Calendar_k_15[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'k_16') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_k_16.length; i++) {
                 answer(Calendar_k_16[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'k_16_2') {
-            impossible_date = [];
+            moeru_possible_date = ['1230','1304','1410'];
+            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_k_16_2.length; i++) {
                 answer(Calendar_k_16_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 's_17') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_s_17.length; i++) {
                 answer(Calendar_s_17[i]);
@@ -315,6 +358,7 @@
             document.getElementById('title_6').textContent = '空きびん、新聞、発泡スチロール';
             document.getElementById('title_7').textContent = '古布';
         } else if (selected_area.value == 's_18') {
+            moeru_possible_date = [];
             impossible_date = [];
             for (var i = 0; i < Calendar_s_18.length; i++) {
                 answer(Calendar_s_18[i]);
@@ -689,6 +733,7 @@ button {
 <div id="result">
 <h1>新発田市<br><a id="title"></a><br>ごみ捨てナビ</h1>
 <p><a id="now_version_result"></p>
+<p>収集日の午前8時30分までに<br>ごみステーションへ出してください。</p>
 
 <table id="table">
     <tr>
