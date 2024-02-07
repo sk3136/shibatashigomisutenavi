@@ -43,7 +43,7 @@
                 }
             } else if (month < calendar_month) {
                 if (month == 12) {
-                    month2 = month2 - 11;
+                    month2 = 0;
                     year = year + 1;
                 }
                 dayOfWeek = new Date(year, month2, calendar_date).getDay();
