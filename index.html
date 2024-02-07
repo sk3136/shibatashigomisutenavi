@@ -27,7 +27,7 @@
                 // month2という変数を作りそれの中にcalendarの月から12を引いた数を入れる
                 var month2 = calendar[i].slice(0,2) - 12;
             } else {
-                month2 = month
+                month2 = calendar[i].slice(0,2);
             }
             // もし現在の月とカレンダーの月が等しかったら
             if (month == calendar[i].slice(0,2)) {
