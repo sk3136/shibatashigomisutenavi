@@ -73,18 +73,20 @@
         }
     }
 
-    // 燃えるごみのなしになっている日付
-    var impossible_date = [];
-    // 燃えるごみの回収日の曜日が基本の曜日ではない日付
-    var moeru_possible_date = [];
-    var moeru_contents = '';
     function moeru(mode, setdate) {
         var month_now = setdate.getMonth() + 1;
         var date_now = setdate.getDate();
         var dayOfWeek_now = setdate.getDay();
         var month_and_date_now = date_number_make(month_now, date_now);
+        // 燃えるごみのなしになっている日付
+        var impossible_date = [];
+        // 燃えるごみの回収日の曜日が基本の曜日ではない日付
+        var moeru_possible_date = [];
+        var moeru_contents = '';
         // 月水金
         if (mode == 1) {
+            moeru_possible_date = [];
+            impossible_date = ['0429','1301','1303'];
             if (dayOfWeek_now == 0 || dayOfWeek_now == 2 || dayOfWeek_now == 4) {
                 setdate.setDate(date_now + 1);
                 month_now = setdate.getMonth() + 1;
@@ -105,6 +107,8 @@
             }
         // 火木土
         } else if (mode == 2) {
+            moeru_possible_date = [];
+            impossible_date = ['0504','1123','1231','1302','1411','1520'];
             if (dayOfWeek_now == 1 || dayOfWeek_now == 3 || dayOfWeek_now == 5) {
                 setdate.setDate(date_now + 1);
                 month_now = setdate.getMonth() + 1;
@@ -125,6 +129,8 @@
             }
         // 火金
         } else {
+            moeru_possible_date = ['1230','1304','1410'];
+            impossible_date = ['1231','1303','1411'];
             if (dayOfWeek_now == 1 || dayOfWeek_now == 4) {
                 setdate.setDate(date_now + 1);
                 month_now = setdate.getMonth() + 1;
@@ -208,141 +214,101 @@
 
         now = new Date();
         if (selected_area.value == 'a_1') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_a_1.length; i++) {
                 answer(Calendar_a_1[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'a_2') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_a_2.length; i++) {
                 answer(Calendar_a_2[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'b_3') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_b_3.length; i++) {
                 answer(Calendar_b_3[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'c_4') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_c_4.length; i++) {
                 answer(Calendar_c_4[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'c_5') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_c_5.length; i++) {
                 answer(Calendar_c_5[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'd_6') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_d_6.length; i++) {
                 answer(Calendar_d_6[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'd_6_2') {
-            moeru_possible_date = ['1230','1304','1410'];
-            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_d_6_2.length; i++) {
                 answer(Calendar_d_6_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 'e_7') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_e_7.length; i++) {
                 answer(Calendar_e_7[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'e_8') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_e_8.length; i++) {
                 answer(Calendar_e_8[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'f_9') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_f_9.length; i++) {
                 answer(Calendar_f_9[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'g_10') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_g_10.length; i++) {
                 answer(Calendar_g_10[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'g_11') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_g_11.length; i++) {
                 answer(Calendar_g_11[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'h_12') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_h_12.length; i++) {
                 answer(Calendar_h_12[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'h_12_2') {
-            moeru_possible_date = ['1230','1304','1410'];
-            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_h_12_2.length; i++) {
                 answer(Calendar_h_12_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 't_13') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_t_13.length; i++) {
                 answer(Calendar_t_13[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 't_14') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_t_14.length; i++) {
                 answer(Calendar_t_14[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'k_15') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_k_15.length; i++) {
                 answer(Calendar_k_15[i]);
             }
             moeru(1, now);
         } else if (selected_area.value == 'k_16') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_k_16.length; i++) {
                 answer(Calendar_k_16[i]);
             }
             moeru(2, now);
         } else if (selected_area.value == 'k_16_2') {
-            moeru_possible_date = ['1230','1304','1410'];
-            impossible_date = ['1231','1303','1411'];
             for (var i = 0; i < Calendar_k_16_2.length; i++) {
                 answer(Calendar_k_16_2[i]);
             }
             moeru(3, now);
         } else if (selected_area.value == 's_17') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_s_17.length; i++) {
                 answer(Calendar_s_17[i]);
             }
@@ -352,8 +318,6 @@
             document.getElementById('title_6').textContent = '空きびん、新聞、発泡スチロール';
             document.getElementById('title_7').textContent = '古布';
         } else if (selected_area.value == 's_18') {
-            moeru_possible_date = [];
-            impossible_date = [];
             for (var i = 0; i < Calendar_s_18.length; i++) {
                 answer(Calendar_s_18[i]);
             }
@@ -381,6 +345,34 @@
         var div_result = document.getElementById('result');
         div_result.style.display = 'none';
     }
+
+    function trash_kind_search() {
+        var search_word = document.getElementById("trash_kind_search").value;
+        var table = document.getElementById('trash_search');
+        for (var i = table.rows.length - 1; i >= 1; i--) {
+            table.deleteRow(i);
+        }
+        if (document.getElementById('trash_kind_search').value.trim().length != 0) {
+            document.getElementById('trash_kind_search').value = '';
+            for (var i = 0; i < trash_kind_list_1.length; i++) {
+                if (trash_kind_list_1[i].indexOf(search_word) != -1) {
+                    let newRow = table.insertRow();
+                    let newCell = newRow.insertCell();
+                    let newCell_2 = newRow.insertCell();
+                    let newCell_3 = newRow.insertCell();
+                    var text = document.createTextNode(trash_kind_list_1[i]);
+                    var text_2 = document.createTextNode(trash_kind_list_2[i]);
+                    var text_3 = document.createTextNode(trash_kind_list_3[i]);
+                    if (trash_kind_list_2[i] == '家電4品目') {
+                        text_3 = document.createTextNode('市のホームページを参照してください。');
+                    }
+                    newCell.appendChild(text);
+                    newCell_2.appendChild(text_2);
+                    newCell_3.appendChild(text_3);
+                }
+            }
+        }
+    }
 </script>
 <style>
 body {
@@ -404,6 +396,7 @@ table {
     font-size: 18px;
     margin: 10px auto;
     border-collapse: collapse;
+    width: 300px;
 }
 td {
     text-align: left;
@@ -429,6 +422,10 @@ option {
 }
 button {
     font-size: 20px;
+}
+input {
+    font-size: 20px;
+    margin: 7px;
 }
 .long_title {
     font-size: 15px;
@@ -767,5 +764,14 @@ button {
 <p>ゴミの分別方法は<br><a href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/dashikata/1001150.html">市のホームページで</a><br>確認してください。</p>
 <button onclick="onemore()">住所選択画面に戻る</button>
 </div>
+<input type="text" id="trash_kind_search">
+<button onclick="trash_kind_search()">検索</button>
+<table id="trash_search">
+    <tr>
+        <th>品目</th>
+        <th>分別</th>
+        <th>出し方の注意事項</th>
+    </tr>
+</table>
 </body>
 </html>
