@@ -346,16 +346,23 @@
         div_result.style.display = 'none';
     }
 
+    function kanaToHira(search_word) {
+        return search_word.replace(/[\u30a1-\u30f6]/g, function(match) {
+            var chr = match.charCodeAt(0) - 0x60;
+            return String.fromCharCode(chr);
+        });
+    }
+
     function trash_kind_search() {
-        var search_word = document.getElementById("trash_kind_search").value;
+        var search_word = document.getElementById('trash_kind_search').value;
         var table = document.getElementById('trash_search');
         for (var i = table.rows.length - 1; i >= 1; i--) {
             table.deleteRow(i);
         }
-        if (document.getElementById('trash_kind_search').value.trim().length != 0) {
-            document.getElementById('trash_kind_search').value = '';
+        search_word = kanaToHira(search_word);
+        if (search_word.trim().length != 0) {
             for (var i = 0; i < trash_kind_list_1.length; i++) {
-                if (trash_kind_list_1[i].indexOf(search_word) != -1) {
+                if (trash_kind_list_1[i].indexOf(search_word) != -1 || trash_kind_list_1_hiragana[i].indexOf(search_word) != -1) {
                     let newRow = table.insertRow();
                     let newCell = newRow.insertCell();
                     let newCell_2 = newRow.insertCell();
@@ -372,6 +379,7 @@
                 }
             }
         }
+        document.getElementById('trash_kind_search').value = '';
     }
 </script>
 <style>
@@ -398,16 +406,16 @@ table {
     border-collapse: collapse;
     width: 300px;
 }
-td {
-    text-align: left;
-    border:1px rgb(158, 158, 158) solid;
-    padding: 8px;
-}
 th {
     text-align: center;
     border:1px rgb(158, 158, 158) solid;
     background-color: #39a73b;
     color: #ffffff;
+    padding: 8px;
+}
+td {
+    text-align: left;
+    border:1px rgb(158, 158, 158) solid;
     padding: 8px;
 }
 select {
