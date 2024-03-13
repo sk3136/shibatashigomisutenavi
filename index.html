@@ -394,11 +394,13 @@
                 }
             }
             if (table.rows.length == 1) {
-                document.getElementById('homepage').textContent = '市のホームページを参照してください。';
                 document.getElementById('none').textContent = 'はありませんでした。';
+                document.getElementById('search_detail').style.display = 'none';
+                document.getElementById('trash_search').style.display = 'none';
             } else {
-                document.getElementById('homepage').textContent = '';
                 document.getElementById('none').textContent = '';
+                document.getElementById('search_detail').style.display = 'block';
+                document.getElementById('trash_search').style.display = 'block';
             }
         }
         document.getElementById('trash_kind_search').value = '';
@@ -801,16 +803,16 @@ input {
 <p>ごみの分別検索</p>
 <input type="text" id="trash_kind_search" placeholder="ごみの名前を入力">
 <button onclick="trash_kind_search()">検索</button>
-<p><a href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/1019342.html">一覧表はこちらから</a></p>
 <div id="search_result">
-    <p>「<a id="include_search"></a>」を含む検索結果<a id="none"></a><br>青色のゴミの名前を押すと出し方の注意事項が表示されます</p>
-    <a id="homepage" href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/1019342.html"></a>
+    <p>「<a id="include_search"></a>」を含む検索結果<a id="none"></a></p>
+    <p id="search_detail">青色のゴミの名前を押すと出し方の注意事項が表示されます</p>
     <table id="trash_search">
         <tr>
             <th>品目</th>
             <th>分別</th>
         </tr>
     </table>
+    <p>市のごみガイドブックは<a href="https://www.city.shibata.lg.jp/kurashi/gomi/gomi/1019342.html">こちら</a>。</p>
 </div>
 </body>
 </html>
