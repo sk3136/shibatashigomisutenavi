@@ -363,6 +363,7 @@
                 table.deleteRow(i);
             }
             
+            var table_rows = -1;
             var search_result = document.getElementById('search_result');
             search_result.style.display = 'block';
             document.getElementById('include_search').textContent = search_word;
@@ -373,20 +374,23 @@
                     let newRow = table.insertRow();
                     let newCell = newRow.insertCell();
                     let newCell_2 = newRow.insertCell();
+                    newCell.style.width = '190px';
+                    newCell_2.style.width = '110px';
                     var text = document.createTextNode(trash_kind_list_1[i]);
                     var text_2 = document.createTextNode(trash_kind_list_2[i]);
-                    
-                    newCell.setAttribute('id',trash_kind_list_3[i]);
-                    if (trash_kind_list_2[i] == '家電4品目') {
-                        newCell.setAttribute('id','市のホームページを参照してください。');
-                        newCell.setAttribute('class','link');
+
+                    newCell.setAttribute('id',i);
+                    if (table_rows == -1) {
+                        table_rows = i;
                     }
-                    if (trash_kind_list_3[i] != '') {
+                    if (trash_kind_list_2[i] == '家電4品目' || trash_kind_list_3[i] != '') {
                         newCell.setAttribute('class','link');
                     }
                     newCell.onclick = function() {
-                        if (this.id != '') {
-                            alert(this.id);
+                        if (trash_kind_list_3[this.id] != '') {
+                            alert(trash_kind_list_3[this.id]);
+                        } else if (trash_kind_list_2[this.id] == '家電4品目') {
+                            alert('市のホームページを参照してください。');
                         }
                     }
                     newCell.appendChild(text);
@@ -402,6 +406,12 @@
                 document.getElementById('search_detail').style.display = 'block';
                 document.getElementById('trash_search').style.display = 'block';
             }
+            var scroll = document.getElementById(table_rows);
+            // 要素が表示されるまでスクロール　block: 'start'なら画面と要素の上辺、block: 'end'なら画面と要素の下辺がくっつくようにスクロール
+            scroll.scrollIntoView({
+                block: 'end',
+                behavior: 'smooth'
+            });
         }
         document.getElementById('trash_kind_search').value = '';
     }
@@ -426,7 +436,7 @@ table tr:nth-child(odd){
     background-color: #e2e0e0;
 }
 table {
-    font-size: 18px;
+    font-size: 20px;
     margin: 10px auto;
     border-collapse: collapse;
     width: 300px;
@@ -439,7 +449,7 @@ th {
     padding: 8px;
 }
 td {
-    text-align: left;
+    text-align: center;
     border:1px rgb(158, 158, 158) solid;
     padding: 8px;
 }
